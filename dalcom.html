@@ -40,7 +40,7 @@
 
   <main>
     <!-- 핵심 가치 섹션 -->
-    <section class="values-section" style="padding:4rem 0;background:linear-gradient(135deg,#f8f9ff 0%,#e8f2ff 100%);">
+    <section id="section1" class="values-section" style="padding:4rem 0;background:linear-gradient(135deg,#f8f9ff 0%,#e8f2ff 100%);">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:1rem;color:#234;font-weight:700;">학생의 행복한 성장과</h2>
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">교사의 효율적인 지도를 돕습니다</h2>
@@ -81,7 +81,7 @@
     </section>
 
     <!-- AI 혁신 기술 섹션 -->
-    <section class="ai-tech-section" style="padding:4rem 0;background:white;">
+    <section id="section2" class="ai-tech-section" style="padding:4rem 0;background:white;">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">AI 혁신 기술로 미래 교육을 선도합니다</h2>
         <div class="tech-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
@@ -125,7 +125,7 @@
     </section>
 
     <!-- 검증된 교과서와 AI 기술 섹션 -->
-    <section class="verified-section" style="padding:4rem 0;background:linear-gradient(135deg,#e8f2ff 0%,#f8f9ff 100%);">
+    <section id="section3" class="verified-section" style="padding:4rem 0;background:linear-gradient(135deg,#e8f2ff 0%,#f8f9ff 100%);">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">선생님을 통해 검증된 1위 교과서와 검증된 AI 기술의 만남</h2>
         <p style="text-align:center;font-size:1.3rem;color:#666;margin-bottom:4rem;line-height:1.6;">교육의 패러다임을 바꿉니다</p>
@@ -186,7 +186,7 @@
     </section>
 
     <!-- 미래 교육 비전 섹션 -->
-    <section class="vision-section" style="padding:4rem 0;background:white;">
+    <section id="section4" class="vision-section" style="padding:4rem 0;background:white;">
       <div class="container">
         <div class="vision-content" style="text-align:center;max-width:800px;margin:0 auto;">
           <h2 style="font-size:2.5rem;margin-bottom:2rem;color:#234;font-weight:700;">미래를 생각하는 바른 교육</h2>
@@ -219,6 +219,16 @@
     </section>
   </main>
 
+  <!-- 스크롤 네비게이션 -->
+  <nav class="scroll-nav">
+    <ul>
+      <li><a href="#section1" class="nav-link active">행복한 성장</a></li>
+      <li><a href="#section2" class="nav-link">AI 혁신 기술</a></li>
+      <li><a href="#section3" class="nav-link">검증된 만남</a></li>
+      <li><a href="#section4" class="nav-link">미래 교육</a></li>
+    </ul>
+  </nav>
+
   <footer>
     <div class="container">
       <div class="footer-content">
@@ -237,5 +247,55 @@
   <!-- 플로팅 버튼 -->
   <a href="training.html" class="floating-start">찾아가는 AI 디지털 교과서!<br>지금 바로 신청하세요</a>
   <a href="tel:1661-0777" class="floating-contact">AI 디지털 교과서 문의<br>1661-0777</a>
+
+  <script>
+    // 스크롤 네비게이션 기능
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+      
+      // 부드러운 스크롤 이동
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // 스크롤 위치에 따른 메뉴 하이라이트
+      function updateActiveNav() {
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + sectionId) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+      
+      // 스크롤 이벤트 리스너
+      window.addEventListener('scroll', updateActiveNav);
+      
+      // 초기 로드 시 활성 메뉴 설정
+      updateActiveNav();
+    });
+  </script>
 </body>
 </html> 

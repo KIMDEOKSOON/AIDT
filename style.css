@@ -438,4 +438,87 @@ body {
 }
 .gnb-dropdown .dropdown-content a:hover {
   background: #f0f4fa;
+}
+
+/* 스크롤 네비게이션 */
+.scroll-nav {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.scroll-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.scroll-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.scroll-nav li:last-child {
+    margin-bottom: 0;
+}
+
+.scroll-nav .nav-link {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.3;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+}
+
+.scroll-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-nav .nav-link.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transform: translateX(5px);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .scroll-nav {
+        left: 10px;
+        padding: 0.8rem;
+    }
+    
+    .scroll-nav .nav-link {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-nav {
+        left: 5px;
+        padding: 0.6rem;
+    }
+    
+    .scroll-nav .nav-link {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.6rem;
+    }
 } 

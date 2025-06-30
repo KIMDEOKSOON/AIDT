@@ -5,6 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>소개할게요 - 아이스크림 AIDT</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 스크롤 네비게이션 스타일 */
+    .scroll-nav {
+      position: fixed;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .scroll-nav:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .scroll-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .scroll-nav li {
+      margin-bottom: 1rem;
+    }
+
+    .scroll-nav li:last-child {
+      margin-bottom: 0;
+    }
+
+    .scroll-nav a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #234;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.8rem 1rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #a259ff, #fd299b);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .scroll-nav a:hover::before {
+      left: 0;
+    }
+
+    .scroll-nav a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .scroll-nav .nav-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .scroll-nav a:hover .nav-icon {
+      transform: scale(1.1);
+    }
+
+    /* 모바일 반응형 */
+    @media (max-width: 768px) {
+      .scroll-nav {
+        left: 15px;
+        padding: 1rem 0.5rem;
+      }
+      
+      .scroll-nav a {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+      }
+      
+      .scroll-nav .nav-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 0.9rem;
+        margin-right: 0.6rem;
+      }
+    }
+
+    /* 스크롤 애니메이션 */
+    .scroll-nav {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+    }
+
+    /* 활성 메뉴 표시 */
+    .scroll-nav a.active {
+      background: linear-gradient(45deg, #a259ff, #fd299b);
+      color: white;
+      box-shadow: 0 4px 15px rgba(162, 89, 255, 0.3);
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -29,6 +158,28 @@
     </nav>
   </header>
 
+  <!-- 스크롤 네비게이션 -->
+  <nav class="scroll-nav">
+    <ul>
+      <li><a href="#exhibition" onclick="scrollToSection('exhibition')">
+        <span class="nav-icon">📚</span>
+        박람회 및 전시
+      </a></li>
+      <li><a href="#school" onclick="scrollToSection('school')">
+        <span class="nav-icon">🏫</span>
+        학교 현장 활용
+      </a></li>
+      <li><a href="#interview" onclick="scrollToSection('interview')">
+        <span class="nav-icon">🎥</span>
+        선생님 인터뷰
+      </a></li>
+      <li><a href="#stats" onclick="scrollToSection('stats')">
+        <span class="nav-icon">📊</span>
+        AIDT 성과
+      </a></li>
+    </ul>
+  </nav>
+
   <section class="hero">
     <div class="container">
       <div class="hero-content">
@@ -40,7 +191,7 @@
 
   <main>
     <!-- 박람회 및 전시 섹션 -->
-    <section class="exhibition-section" style="padding:4rem 0;background:linear-gradient(135deg,#f8f9ff 0%,#e8f2ff 100%);">
+    <section id="exhibition" class="exhibition-section" style="padding:4rem 0;background:linear-gradient(135deg,#f8f9ff 0%,#e8f2ff 100%);">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">박람회 및 전시 현장</h2>
         <div class="exhibition-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:4rem;">
@@ -70,7 +221,7 @@
     </section>
 
     <!-- 학교 현장 활용 섹션 -->
-    <section class="school-section" style="padding:4rem 0;background:white;">
+    <section id="school" class="school-section" style="padding:4rem 0;background:white;">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">실제 학교 현장에서의 활용</h2>
         <div class="school-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem;">
@@ -123,7 +274,7 @@
     </section>
 
     <!-- 선생님 인터뷰 영상 섹션 -->
-    <section class="interview-section" style="padding:4rem 0;background:linear-gradient(135deg,#e8f2ff 0%,#f8f9ff 100%);">
+    <section id="interview" class="interview-section" style="padding:4rem 0;background:linear-gradient(135deg,#e8f2ff 0%,#f8f9ff 100%);">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">선생님들의 생생한 인터뷰</h2>
         <div class="interview-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:3rem;">
@@ -176,7 +327,7 @@
     </section>
 
     <!-- 통계 및 성과 섹션 -->
-    <section class="stats-section" style="padding:4rem 0;background:white;">
+    <section id="stats" class="stats-section" style="padding:4rem 0;background:white;">
       <div class="container">
         <h2 style="text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#234;font-weight:700;">아이스크림AIDT의 성과</h2>
         <div class="stats-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;">
@@ -207,5 +358,72 @@
 
   <a href="training.html" class="floating-start">찾아가는 AI 디지털 교과서!<br>지금 바로 신청하세요</a>
   <a href="tel:1661-0777" class="floating-contact">AI 디지털 교과서 문의<br>1661-0777</a>
+
+  <script>
+    // 부드러운 스크롤 함수
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+
+    // 스크롤 위치에 따른 활성 메뉴 표시
+    window.addEventListener('scroll', function() {
+      const sections = ['exhibition', 'school', 'interview', 'stats'];
+      const scrollPosition = window.scrollY + window.innerHeight / 2; // 화면 중앙 기준으로 변경
+
+      let activeSection = null;
+
+      sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          
+          // 현재 스크롤 위치가 섹션 내부에 있는지 확인
+          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+            activeSection = sectionId;
+          }
+        }
+      });
+
+      // 마지막 섹션에 도달했을 때 처리
+      if (!activeSection && scrollPosition >= document.body.scrollHeight - window.innerHeight) {
+        activeSection = 'stats';
+      }
+
+      // 활성 메뉴 업데이트
+      document.querySelectorAll('.scroll-nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      if (activeSection) {
+        const activeLink = document.querySelector(`a[href="#${activeSection}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+
+    // 페이지 로드 시 첫 번째 섹션 활성화
+    window.addEventListener('load', function() {
+      const firstLink = document.querySelector('.scroll-nav a');
+      if (firstLink) {
+        firstLink.classList.add('active');
+      }
+    });
+
+    // DOMContentLoaded 이벤트에서도 초기 활성화
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstLink = document.querySelector('.scroll-nav a');
+      if (firstLink) {
+        firstLink.classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html> 
