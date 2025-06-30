@@ -521,4 +521,36 @@ body {
         font-size: 0.7rem;
         padding: 0.5rem 0.6rem;
     }
+}
+
+/* 드롭다운 메뉴 */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 140px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  z-index: 100;
+  padding: 0.5rem 0;
+}
+.nav-dropdown:hover .dropdown-content {
+  display: block;
+}
+.nav-dropdown .dropdown-content a {
+  display: block;
+  padding: 0.7rem 1.2rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.nav-dropdown .dropdown-content a:hover {
+  background: #f0f4fa;
+  color: #007bff;
 } 
